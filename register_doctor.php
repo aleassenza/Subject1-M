@@ -31,9 +31,9 @@ if(isset($_SESSION["user"]) && isset($_SESSION['lvl']) && isset($_SESSION['fulln
 			$cov=$_POST['cov'];
 			$mpps=$_POST['mpps'];
 			require_once('bd/abrir.php');
-			$consulta = "CALL SP_DOCTORES_USUARIOS(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$consulta = "CALL SP_DOCTORES_USUARIOS(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			if ($sentencia = mysqli_prepare($enlace, $consulta)) {
-				mysqli_stmt_bind_param($sentencia, "isssssiss", $ci, $nombre, $apellido, $correo, $telefono, md5($pass),$especializacion, $cov, $mpps);
+				mysqli_stmt_bind_param($sentencia, "isssssissi", $ci, $nombre, $apellido, $correo, $telefono, md5($pass),$especializacion, $cov, $mpps, $_SESSION['ci']);
 				mysqli_stmt_execute($sentencia);
 			    mysqli_stmt_close($sentencia);
 				require_once('bd/cerrar.php');
