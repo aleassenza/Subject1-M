@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="img/logo/logo.png" class="img-responsive" alt="logo"></a>
+                    <a class="navbar-brand" href="#"><img src="img/logo/logo1.png" class="img-responsive" alt="logo"></a>
                 </div>
                 <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
                     <div class="col-md-3 col-xs-6 nav-wrap">
@@ -72,23 +72,17 @@
         <div id="owl-hero" class="owl-carousel owl-theme">
             <div class="item" style="background-image: url(img/tooth/1.jpeg)">
                 <div class="caption">
-                    <h6>Branding / Design / Creativty</h6>
-                    <h1>We Are <span>Rise</span></h1>
-                    <a class="btn btn-transparent" href="#">Learn More</a><a class="btn btn-light" href="#">Buy Now</a>
                 </div>
             </div>
             <div class="item" style="background-image: url(img/tooth/2.jpeg)">
                 <div class="caption">
-                    <h6>Branding / Design / Creativty</h6>
-                    <h1>Creative <span>Design</span></h1>
-                    <a class="btn btn-transparent" href="#">Learn More</a><a class="btn btn-light" href="#">Buy Now</a>
+
+
                 </div>
             </div>
             <div class="item" style="background-image: url(img/tooth/3.jpeg)">
                 <div class="caption">
-                    <h6>Branding / Design / Creativty</h6>
-                    <h1>Clean <span>Code</span></h1>
-                    <a class="btn btn-transparent" href="#">Learn More</a><a class="btn btn-light" href="#">Buy Now</a>
+
                 </div>
             </div>
         </div>
@@ -98,10 +92,10 @@
 	============================================= -->
     <section id="welcome">
         <div class="container">
-            <h2>Welcome To <span>Rise</span></h2>
+            <h2>Bienvenido a <span>TuCitaDental</span></h2>
             <hr class="sep">
-            <p>Make Yourself At Home Don't Be Shy</p>
-            <img class="img-responsive center-block wow fadeInUp" data-wow-delay=".3s" src="img/welcome/logo.png" alt="logo">
+            <p>Únete a nuestra comunidad y explota tu profesión </p>
+            <img class="img-responsive center-block wow fadeInUp" data-wow-delay=".3s" src="img/logo/logo2.png" alt="logo">
         </div>
     </section>
 
@@ -118,14 +112,20 @@
                         <div class="media-left"><span class="icon-lightbulb"></span></div>
                         <div class="media-body">
                             <h3>Implantología</h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
+                            <p class="parrafo">Especialidad de la odontología que se encarga del diagnóstico, planificación y ejecución del
+                              tratamiento encaminado a la reposición de los dientes perdidos mediante la colocación de implantes.
+                            </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="media-left"><span class="icon-mobile"></span></div>
                         <div class="media-body">
-                            <h3>Odontología</h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
+                            <h3>General</h3>
+                            <p>Se encarga de solucionar los problemas primarios que tienen que
+                              ver con la boca, dientes y otras estructuras relacionadas. Representa
+                              en la mayoría de los casos el contacto inicial del
+                              paciente con el profesional de la odontología.
+                            </p>
                         </div>
 
                     </div>
@@ -133,7 +133,10 @@
                         <div class="media-left"><span class="icon-compass"></span></div>
                         <div class="media-body">
                             <h3>Maxilofacial</h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
+                            <p style="margin-bottom: 100px;">Se encarga del diagnóstico y tratamiento médico o quirúrgico de todos
+                              aquellos problemas relacionados con las estructura anatómicas de la cara ,
+                              la cabeza y el cuello , así como de la patología de la cavidad oral.
+                            </p>
                         </div>
 
                     </div>
@@ -143,7 +146,9 @@
                             <div class="media-left"><span class="icon-adjustments"></span></div>
                             <div class="media-body">
                                 <h3>Ortodoncia</h3>
-                                <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
+                                <p>Parte de la odontología que se ocupa de corregir los defectos y
+                                  las irregularidades de posición de los dientes.
+                                </p>
                             </div>
 
                         </div>
@@ -151,7 +156,9 @@
                             <div class="media-left"><span class="icon-tools"></span></div>
                             <div class="media-body">
                                 <h3>Endodoncia</h3>
-                                <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
+                                <p>Parte de la odontología que estudia las enfermedades de
+                                  la pulpa de los dientes y sus técnicas de curación.
+                                </p>
                             </div>
 
                         </div>
@@ -159,7 +166,10 @@
                             <div class="media-left"><span class="icon-wallet"></span></div>
                             <div class="media-body">
                                 <h3>Infantil</h3>
-                                <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
+                                <p>Especialidad de la odontología que trata el cuidado oral preventivo y terapéutico de niños y
+                                  adolescentes. El principal objetivo durante el tratamiento dental es dirigir a niño para que su
+                                  actitud sea positiva frente al tratamiento.
+                                </p>
                             </div>
 
                         </div>
@@ -178,60 +188,60 @@
             <p>Portafolio de nuestros trabajos</p>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <a class="portfolio-box" href="img/portfolio/1.jpg" data-lightbox="image-1" data-title="Your caption">
-                        <img src="img/portfolio/1.jpg" class="img-responsive" alt="1">
+                    <a style="width:459.656px; height:247.500px;" class="portfolio-box" href="img/portfolio/prueba1.png" data-lightbox="image-1" data-title="Your caption">
+                        <img style="width:459.656px; height:247.500px;" src="img/portfolio/prueba1.png" class="img-responsive" alt="1">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
+
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <a href="img/portfolio/2.jpg" class="portfolio-box" data-lightbox="image-2" data-title="Your caption">
-                        <img src="img/portfolio/2.jpg" class="img-responsive" alt="2">
+                    <a style="width:459.656px; height:247.500px;" href="img/portfolio/prueba2.png" class="portfolio-box" data-lightbox="image-2" data-title="Your caption">
+                        <img style="width:459.656px; height:247.500px;" src="img/portfolio/prueba2.png" class="img-responsive" alt="2">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
+
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <a href="img/portfolio/3.jpg" class="portfolio-box" data-lightbox="image-3" data-title="Your caption">
-                        <img src="img/portfolio/3.jpg" class="img-responsive" alt="3">
+                    <a style="width:459.656px; height:247.500px;" href="img/portfolio/prueba3.png" class="portfolio-box" data-lightbox="image-3" data-title="Your caption">
+                        <img style="width:459.656px; height:247.500px;" src="img/portfolio/prueba3.png" class="img-responsive" alt="3">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
+
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <a href="img/portfolio/4.jpg" class="portfolio-box" data-lightbox="image-4" data-title="Your caption">
-                        <img src="img/portfolio/4.jpg" class="img-responsive" alt="4">
+                    <a style="width:459.656px; height:247.500px;" href="img/portfolio/prueba4.png" class="portfolio-box" data-lightbox="image-4" data-title="Your caption">
+                        <img style="width:459.656px; height:247.500px;" src="img/portfolio/prueba4.png" class="img-responsive" alt="4">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
+
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+
                                 </div>
                             </div>
                         </div>
@@ -243,10 +253,10 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
+
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+
                                 </div>
                             </div>
                         </div>
@@ -258,10 +268,10 @@
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Category
+
                                 </div>
                                 <div class="project-name">
-                                    Project Name
+
                                 </div>
                             </div>
                         </div>
@@ -282,7 +292,7 @@
                 <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
                 <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
             </div>
-            <h6>&copy; 2017 Elaborado por Alejandro Maya</h6>
+            <h6>&copy; Derechos reservados UNIMAR 2017 proyecto de pasantías elaborado por Alejandro Maya</h6>
         </div>
     </footer>
     <!-- Modal -->

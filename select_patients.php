@@ -17,7 +17,7 @@
 <?php
  		require_once('bd/abrir.php');
  		$i = 0;
-		$consulta = "SELECT DISTINCT D.ci_usuario as ci, D.nombre, D.apellido, D.correo, D.telefono, CASE D.estado_usuario WHEN 'A' THEN 'ACTIVO' WHEN 'I' THEN 'INACTIVO' END as estado FROM CITAS as C JOIN USUARIOS as D on(C.ci_usuario = D.ci_usuario) WHERE C.ci_moderador = ? AND D.nivel = 0 AND D.estado_usuario != 'E';";
+		$consulta = "SELECT DISTINCT D.ci_usuario as ci, D.nombre, D.apellido, D.correo, D.telefono, CASE D.estado_usuario WHEN 'A' THEN 'ACTIVO' WHEN 'I' THEN 'INACTIVO' END as estado FROM CITAS as C JOIN USUARIOS as D on(C.ci_usuario = D.ci_usuario) WHERE C.ci_moderador = ? AND D.nivel = 3 AND D.estado_usuario != 'E';";
 		if ($sentencia = mysqli_prepare($enlace, $consulta)) {
 			mysqli_stmt_bind_param($sentencia, "i",$_SESSION['ci']);
 			mysqli_stmt_execute($sentencia);

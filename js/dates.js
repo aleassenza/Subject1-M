@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	$(document).on('click', '#cita', function(){
 		$.ajax({
 			url: 'dates.php',
 			type: 'POST',
@@ -7,6 +7,7 @@ $(document).ready(function() {
 		.done(function(callback) {
 			console.log("success");
 			$('#main-content').find('section').empty().append(callback);
+			$('#users-table').before(`<label for="filter">Filtro: </label><select class="form-control" id="filter" name="filter"><option>Seleccione</option><option value="AGENDADA" selected="selected">AGENDADA</option><option value="CANCELADA">CANCELADA</option><option value="FINALIZADA">FINALIZADA</option></select>`);
 			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" id="agregar_cita">Agregar</button>`);
 		})
 		.fail(function() {
@@ -15,6 +16,33 @@ $(document).ready(function() {
 		.always(function() {
 			console.log("complete");
 		});
+	})
+	$(document).on('change', '#filter', function() {
+		var filter = $(this).children('option:selected').val();
+		$('#users-table tbody tr').show();
+		$.each($('#users-table tbody tr'), function(i, val) {
+        	$(this).children('td:eq(11)').children('select').children('option:selected').val() == filter ? $('#users-table tbody tr').eq(i).removeAttr('style') : $('#users-table tbody tr').eq(i).hide()
+    	});
+	})
+	$(document).on('dblclick', '#users-table tr td:not(:last-child)', function() {
+		var crud = `<div class="col-md-12">
+					<div class="col-md-2">
+						<button type="button" class="btn btn-warning" id="update_date">Modificar</button>
+					</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-danger" id="delete">Eliminar</button>
+					</div>`;
+		if($(this).parent('tr').hasClass('success')) {
+			$(this).parent('tr').removeAttr('class').parents('table').next('div').remove();
+		} else {
+			if($('#users-table tr').hasClass('success')) {
+				$('#users-table tr').removeAttr('class').parents('table').next('div').remove();
+				$(this).parent('tr').addClass('success').parents('table').after(crud);
+			} else {
+				$(this).parent('tr').addClass('success').parents('table').after(crud);
+			}
+		}
+	});
 	$(document).on('change', '#estado', function() {
 		$.ajax({
 			url: 'date_status.php',
@@ -118,5 +146,32 @@ $(document).ready(function() {
 	});
 	$(document).on('click', '#insert_cita', function() {
 		$('#form_cita').submit();
+	});
+	$(document).on('click', 'a[role="button"]', function(){
+		console.log('in')
+		var id = $(this).attr('aria-controls');
+		if($(this).children('span')) {
+			$.ajax({
+			url: 'modify_date.php',
+			type: 'POST',
+			data: {id: id},
+			})
+			.done(function() {
+				console.log("success");
+			});
+
+			$.ajax({
+			url: 'get_dates.php',
+			type: 'POST',
+			})
+			.done(function(callback) {
+				console.log(callback);
+				$('#cant').html(callback[0].cantidad)
+				$('#cant_not').html('Usted tiene: '+callback[0].cantidad+' notificaciones')
+				$('#cant_not').after(callback[0].contenido)
+			})
+			$('#alert_notificatoin_bar').find('.subNot a[data-val="'+id+'"]').parent('li').remove();
+			$(this).children('span').remove();
+		}
 	});
 });

@@ -17,7 +17,7 @@
 <?php
  		require_once('bd/abrir.php');
  		$i = 0;
-		$consulta = "SELECT ci_usuario as ci, nombre, apellido, correo, telefono, CASE estado_usuario WHEN 'A' THEN 'ACTIVO' WHEN 'I' THEN 'INACTIVO' END as estado FROM USUARIOS WHERE estado_usuario != 'E' AND nivel = 2;";
+		$consulta = "SELECT ci_usuario as ci, nombre, apellido, correo, telefono, CASE estado_usuario WHEN 'A' THEN 'ACTIVO' WHEN 'I' THEN 'INACTIVO' END as estado FROM USUARIOS WHERE estado_usuario != 'E' AND nivel = 1;";
 		if ($sentencia = mysqli_prepare($enlace, $consulta)) {
 			mysqli_stmt_execute($sentencia);
 			mysqli_stmt_store_result($sentencia);

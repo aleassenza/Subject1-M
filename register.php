@@ -9,10 +9,10 @@ require_once('bd/abrir.php');
 			$apellido=$_POST['lastname'];
 			$_POST['phone']==null||$_POST['phone']=="" ? $telefono=null : $telefono=$_POST['phone'];
 			$ci=$_POST['ci'];
-			$nivel=1;
+			$nivel=3;
 			if(isset($_POST['mod']))
 			{
-				$nivel=2;
+				$nivel=1;
 			}
 			if($pass===$repass) {
 				$consulta = "INSERT INTO USUARIOS (ci_usuario, nombre, apellido, correo, telefono, contrasenna, nivel) values (?,?,?,?,?,?,?);";

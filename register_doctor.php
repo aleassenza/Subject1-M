@@ -2,12 +2,10 @@
 if(isset($_SESSION["user"]) && isset($_SESSION['lvl']) && isset($_SESSION['fullname'])){
 	if(isset($_POST['mail']) && isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['ci']) && isset($_POST['especializacion']) && isset($_POST['cov']) && isset($_POST['mpps']) && $_POST['mail']!="" && $_POST['name']!="" && $_POST['lastname']!="" && $_POST['ci']!="" && $_POST['especializacion']!="" && $_POST['cov']!="" && $_POST['mpps']!=""){
 			$resp = array('action' => '');
-			echo "in";
 			if(!isset($_POST['password']) && !isset($_POST['confirm']) && isset($_POST['update']))
 			{
 				$pass="";
 				$repass="";
-				echo "in";
 			} else if($_POST['password'] !=''&& $_POST['confirm'] !=''){
 				$pass=$_POST['password'];
 				$repass=$_POST['confirm'];

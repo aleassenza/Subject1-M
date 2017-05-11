@@ -42,13 +42,26 @@ if(isset($_SESSION["user"]) && isset($_SESSION['lvl']) && isset($_SESSION['fulln
 				$date = $_POST['date'];
 				$consulta = "CALL SP_CITAS_NOTIFICACIONES(?, ?, ?, ?, ?, ?)";
 				require_once('bd/abrir.php');
-				if ($sentencia = mysqli_prepare($enlace, $consulta)) {
-					mysqli_stmt_bind_param($sentencia, "iisiss", $ci, $ci_doctor, $date, $ci_moderador, $motivo, $descripcion);
-					mysqli_stmt_execute($sentencia);
-				    mysqli_stmt_close($sentencia);
-					require_once('bd/cerrar.php');
-			        header('Location: inicio.php');
-			    } else {
+				$exist = "SELECT * FROM USUARIOS U WHERE U.ci_usuario = ?;";
+				if ($ifExist = mysqli_prepare($enlace, $exist)) {
+					mysqli_stmt_bind_param($ifExist, 's', $ci);
+					mysqli_stmt_execute($ifExist);
+					mysqli_stmt_store_result($ifExist);
+					$rowCount = mysqli_stmt_num_rows($ifExist);
+					if($rowCount > 0){
+						if ($sentencia = mysqli_prepare($enlace, $consulta)) {
+							mysqli_stmt_bind_param($sentencia, "iisiss", $ci, $ci_doctor, $date, $ci_moderador, $motivo, $descripcion);
+							mysqli_stmt_execute($sentencia);
+						    mysqli_stmt_close($sentencia);
+							require_once('bd/cerrar.php');
+					        header('Location: inicio.php');
+					    } else {
+					    	header('Location: inicio.php');
+					    }
+					} else {
+						echo '<script>alert("Error: El usuario no se encuentra registrado")</script>';
+					}
+				} else {
 			    	header('Location: inicio.php');
 			    }
 			}else{

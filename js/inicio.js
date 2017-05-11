@@ -1,4 +1,77 @@
 $(document).ready(function() {
+	$.ajax({
+		url: 'get_dates.php',
+		type: 'POST',
+	})
+	.done(function(callback) {
+		console.log(callback);
+		$('#cant').html(callback[0].cantidad)
+		$('#cant_not').html('Usted tiene: '+callback[0].cantidad+' notificaciones')
+		$('#cant_not').parent().after(callback[0].contenido)
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	$(document).on('click', '#nots', function() {
+		$.ajax({
+			url: 'select_dates.php',
+			type: 'POST',
+		})
+		.done(function(callback) {
+			console.log(callback);
+			$('#main-content').children('section').empty().append(callback[0].cont)
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+	});
+	$(document).on('click', '.subNot a', function(event) {
+		$.ajax({
+			url: 'this_date.php',
+			type: 'POST',
+			data: {data: $(this).attr('data-val')},
+		})
+		.done(function(callback) {
+			console.log(callback[0].contenido);
+			$('#modal-general .modal-title').empty().append('<h1>Mensajer&iacute;a</h1>')
+			$('#modal-general .modal-body').empty().append(callback[0].contenido);
+		});
+		$('#modal-general').attr('data-mod', $(this).attr('data-val'))
+		$('#modal-general').modal('show');
+	});
+	$(document).on('hidden.bs.modal', '#modal-general[data-mod]', function () {
+
+		var val = $(this).attr('data-mod');
+
+		$.ajax({
+			url: 'modify_date.php',
+			type: 'POST',
+			data: {id: val},
+		})
+		.done(function() {
+			console.log("success");
+		});
+
+		$.ajax({
+		url: 'get_dates.php',
+		type: 'POST',
+		})
+		.done(function(callback) {
+			console.log(callback);
+			$('#cant').html(callback[0].cantidad)
+			$('#cant_not').html('Usted tiene: '+callback[0].cantidad+' notificaciones')
+			$('#cant_not').after(callback[0].contenido)
+		})
+		$('#alert_notificatoin_bar').find('.subNot a[data-val="'+val+'"]').parent('li').remove();
+		$(this).removeAttr('data-mod');
+	})
 	$(document).on('dblclick', '#docs-table tr td:not(:last-child)', function() {
 		var crud = `<div class="col-md-12">
 					<div class="col-md-2">
@@ -66,7 +139,7 @@ $(document).ready(function() {
 		})
 		.done(function(callback) {
 			console.log(callback)
-			callback==1 ? swal('Actualiacion', 'Estado actualizado.', 'success') : swal('Actualiacion', 'Error: Estado no actualizado.', 'error')
+			callback==1 ? swal('Actualizacion', 'Estado actualizado.', 'success') : swal('Actualizacion', 'Error: Estado no actualizado.', 'error')
 		})
 		.fail(function() {
 			console.log("error");
@@ -207,7 +280,7 @@ $(document).ready(function() {
 		.done(function(callback) {
 			console.log(callback);
 			$('#modal-general').modal('hide');
-			callback['action'] == 'success' ? swal({title: 'Actualiacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload();}) : swal({title: 'Actualiacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload();});
+			callback['action'] == 'success' ? swal({title: 'Actualizacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload();}) : swal({title: 'Actualizacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload();});
 		})
 		.fail(function() {
 			console.log("error");
@@ -225,7 +298,7 @@ $(document).ready(function() {
 		.done(function(callback) {
 			console.log(callback);
 			$('#modal-general').modal('hide');
-			callback['action'] == 'success' ? swal({title: 'Actualiacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload(true);}) : swal({title: 'Actualiacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload(true);});
+			callback['action'] == 'success' ? swal({title: 'Actualizacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload(true);}) : swal({title: 'Actualizacion',text: "Usuario actualizado.",type: 'success',confirmButtonColor: '#3085d6',confirmButtonText: 'Aceptar'}).then(function () {location.reload(true);});
 		})
 		.fail(function() {
 			console.log("error");
@@ -241,7 +314,7 @@ $(document).ready(function() {
 			data: {ci:$('table tbody tr[class="success"]').children('td').eq(1).html(), correo:$('table tbody tr[class="success"]').children('td').eq(5).html()},
 		})
 		.done(function(callback) {
-			callback['action'] == 'success' ? swal('Actualiacion', 'Usuario actualizado.', 'success') : swal('Actualiacion', 'Error: Usuario no actualizado.', 'error');
+			callback['action'] == 'success' ? swal('Actualizacion', 'Usuario actualizado.', 'success') : swal('Actualizacion', 'Error: Usuario no actualizado.', 'error');
 			$('#users-table').load('tabla.php')
 		})
 		.fail(function() {
@@ -469,6 +542,57 @@ $(document).ready(function() {
 			$('#main-content').find('section').empty().append(callback);
 			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" data-id="mod" id="agregar">Agregar</button>`);
 			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+	$(document).on('click', '#doctor_all', function(event) {
+		$.ajax({
+		url: 'select_doctors_admin.php',
+		type: 'POST',
+		})
+		.done(function(callback) {
+			$('#main-content').find('section').empty().append(callback);
+			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" id="agregar_doctor">Agregar</button>`);
+			console.log(callback);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+	$(document).on('click', '#paciente_all', function(event) {
+		$.ajax({
+		url: 'select_patients_admin.php',
+		type: 'POST',
+		})
+		.done(function(callback) {
+			$('#main-content').find('section').empty().append(callback);
+			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" id="agregar">Agregar</button>`);
+			console.log(callback);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+	$(document).on('click', '#moderador_all', function(event) {
+		$.ajax({
+		url: 'select_moderators_admin.php',
+		type: 'POST',
+		})
+		.done(function(callback) {
+			$('#main-content').find('section').empty().append(callback);
+			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" data-id="mod" id="agregar">Agregar</button>`);
+			console.log(callback);
 		})
 		.fail(function() {
 			console.log("error");
