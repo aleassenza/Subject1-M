@@ -140,7 +140,7 @@ if(isset($_SESSION['user'])&&isset($_SESSION['lvl']))
                       </ul>
                   </li>
 				  <li class="sub-menu">
-                      <a href="javascript:;" class="" id="cita">
+                      <a href="javascript:;" class="" id="cita_mod">
                           <i class="icon_document_alt"></i>
                           <span>Citas</span>
                       </a>
@@ -151,7 +151,14 @@ if(isset($_SESSION['user'])&&isset($_SESSION['lvl']))
                           <span>Reportes</span>
                       </a>
                   </li>
-                  <?php } ?>
+                  <?php }else if($_SESSION['lvl'] > 1) { ?>
+                        <li class="sub-menu">
+                      <a href="javascript:;" class="" id="cita">
+                          <i class="icon_document_alt"></i>
+                          <span>Citas</span>
+                      </a>
+                  </li>
+                   <?php } ?>
               <!-- sidebar menu end-->
           </div>
       </aside>
@@ -177,6 +184,7 @@ if(isset($_SESSION['user'])&&isset($_SESSION['lvl']))
     <script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
     <script src="js/sweetalert2.min.js"></script>
+    <script src="js/highcharts.js"></script>
     <script src="js/inicio.js"></script>
     <script src="js/dates.js"></script>
     <script src="js/reportes.js"></script>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(document).on('click', '#cita', function(){
+	$(document).on('click', '#cita_mod', function(){
 		$.ajax({
 			url: 'dates.php',
 			type: 'POST',
@@ -7,7 +7,25 @@ $(document).ready(function() {
 		.done(function(callback) {
 			console.log("success");
 			$('#main-content').find('section').empty().append(callback);
-			$('#users-table').before(`<label for="filter">Filtro: </label><select class="form-control" id="filter" name="filter"><option>Seleccione</option><option value="AGENDADA" selected="selected">AGENDADA</option><option value="CANCELADA">CANCELADA</option><option value="FINALIZADA">FINALIZADA</option></select>`);
+			$('#modPat-table').before(`<label for="filter">Filtro: </label><select class="form-control" id="filter" name="filter"><option>Seleccione</option><option value="AGENDADA" selected="selected">AGENDADA</option><option value="CANCELADA">CANCELADA</option><option value="FINALIZADA">FINALIZADA</option></select>`);
+			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" id="agregar_cita">Agregar</button>`);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+	$(document).on('click', '#cita', function(){
+		$.ajax({
+			url: 'patient_dates.php',
+			type: 'POST',
+		})
+		.done(function(callback) {
+			console.log("success");
+			$('#main-content').find('section').empty().append(callback);
+			$('#patient-table').before(`<label for="pFilter">Filtro: </label><select class="form-control" id="pFilter" name="pFilter"><option>Seleccione</option><option value="AGENDADA" selected="selected">AGENDADA</option><option value="CANCELADA">CANCELADA</option><option value="FINALIZADA">FINALIZADA</option></select>`);
 			$('#main-content').find('section').append(`<button type="button" class="btn btn-success" id="agregar_cita">Agregar</button>`);
 		})
 		.fail(function() {
@@ -19,24 +37,28 @@ $(document).ready(function() {
 	})
 	$(document).on('change', '#filter', function() {
 		var filter = $(this).children('option:selected').val();
-		$('#users-table tbody tr').show();
-		$.each($('#users-table tbody tr'), function(i, val) {
-        	$(this).children('td:eq(11)').children('select').children('option:selected').val() == filter ? $('#users-table tbody tr').eq(i).removeAttr('style') : $('#users-table tbody tr').eq(i).hide()
+		$('#modPat-table tbody tr').show();
+		$.each($('#modPat-table tbody tr'), function(i, val) {
+        	$(this).children('td:eq(11)').children('select').children('option:selected').val() == filter ? $('#modPat-table tbody tr').eq(i).removeAttr('style') : $('#modPat-table tbody tr').eq(i).hide()
     	});
 	})
-	$(document).on('dblclick', '#users-table tr td:not(:last-child)', function() {
+	$(document).on('change', '#pFilter', function() {
+		var filter = $(this).children('option:selected').val();
+		$('#patient-table tbody tr').show();
+		$.each($('#patient-table tbody tr'), function(i, val) {
+        	$(this).children('td:eq(11)').children('select').children('option:selected').val() == filter ? $('#patient-table tbody tr').eq(i).removeAttr('style') : $('#patient-table tbody tr').eq(i).hide()
+    	});
+	})
+	$(document).on('dblclick', '#modPat-table tr td:not(:last-child)', function() {
 		var crud = `<div class="col-md-12">
 					<div class="col-md-2">
 						<button type="button" class="btn btn-warning" id="update_date">Modificar</button>
-					</div>
-					<div class="col-md-2">
-						<button type="button" class="btn btn-danger" id="delete">Eliminar</button>
 					</div>`;
 		if($(this).parent('tr').hasClass('success')) {
 			$(this).parent('tr').removeAttr('class').parents('table').next('div').remove();
 		} else {
-			if($('#users-table tr').hasClass('success')) {
-				$('#users-table tr').removeAttr('class').parents('table').next('div').remove();
+			if($('#modPat-table tr').hasClass('success')) {
+				$('#modPat-table tr').removeAttr('class').parents('table').next('div').remove();
 				$(this).parent('tr').addClass('success').parents('table').after(crud);
 			} else {
 				$(this).parent('tr').addClass('success').parents('table').after(crud);
@@ -47,7 +69,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: 'date_status.php',
 			type: 'POST',
-			data: {status: $(this).children('option:selected').val()[0], ci:$('#users-table tbody tr td').eq(1).html()},
+			data: {status: $(this).children('option:selected').val()[0], ci:$('#modPat-table tbody tr td').eq(1).html(), id:$(this).parents('tr').attr('data-val')},
 		})
 		.done(function(callback) {
 			console.log("success");
@@ -173,5 +195,8 @@ $(document).ready(function() {
 			$('#alert_notificatoin_bar').find('.subNot a[data-val="'+id+'"]').parent('li').remove();
 			$(this).children('span').remove();
 		}
+	});
+	$(document).on('click', '#update_date', function(event) {
+
 	});
 });
